@@ -6,7 +6,9 @@
 //  Copyright © 2018 Aananya. All rights reserved.
 //
 
+
 import Foundation
+
 enum PlistError: Error {
     case invalidResource
     case parsingFailure
@@ -29,7 +31,8 @@ class PlistLoader {
 class ContactsSource {
     static var contacts: [Contact] {
         let data = try! PlistLoader.array(fromFile: "ContactsDB", ofType: "plist")
-        return data.flatMap { Contact(dictionary: $0) }
+        //flatmap-depricated
+        return data.compactMap { Contact(dictionary: $0) }
     }
     
 }
